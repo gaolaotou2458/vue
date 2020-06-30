@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>内容分发</title>
+
+</head>
+
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    -->
+    </script>
+    <div id="app">
+      <input type="checkbox" v-model="ischecked" @change="handerChecked">全选/全不选
+     <ul>
+       <li v-for="(data,index) in datalist" :key="data.id">
+         <input type="checkbox" v-model="checkgroup" :value="data" @change="handleLichange">{{data}}
+       </li>
+     </ul>
+     <p>总金额计算:{{getSum()}}</p>
+     <!-- {{checkgroup}}-->
+    </div>
+
+    <script type="text/javascript">
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          ischecked:false,
+          checkgroup:[],
+          datalist:[
+            {name:'商品1',price:10,number:1,id:"1"},
+            {name:'商品2',price:20,number:2,id:"2"},
+            {name:'商品3',price:30,number:3,id:"3"}
+          ]
+        },
+        methods:{
+          getSum(){
+            let totalNum = 0 ;
+            this.checkgroup.forEach(element => {
+              totalNum+= element.price * element.number;
+            });  
+            return totalNum;
+          },
+          handerChecked(){
+            //this.ischecked = !this.ischecked
+            if(this.ischecked){
+              this.checkgroup = this.datalist
+            } else {
+              this.checkgroup = [];
+            }
+          },
+          handleLichange(){
+            if(this.checkgroup.length == this.datalist.length) {
+              this.ischecked = true;
+            } else {
+              this.ischecked = false;
+            }
+          }
+       }
+      });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>模糊查询</title>
+
+</head>
+
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    -->
+    </script>
+    <div id="app">
+    
+      <input type="text" v-model="mytext">{{mytext}}
+      <textarea name="" id="" cols="30" rows="10">
+        {{mytext}}
+      </textarea>
+      <br>
+      <input type="checkbox"  v-model="isChecked">记录用户名
+      <br>
+
+      <p>你喜欢的运动有哪些
+          <input type="checkbox" v-model="checkGroup" value="游泳"/>游泳
+          <input type="checkbox" v-model="checkGroup" value="溜冰"/>溜冰
+          <input type="checkbox" v-model="checkGroup" value="长跑"/>长跑
+      </p>
+      {{checkGroup}}
+      <p>你最喜欢的开发语言
+            <input type="radio" v-model="picked" value="php"/>php
+            <input type="radio" v-model="picked" value="java"/>java
+            <input type="radio" v-model="picked" value="js"/>js
+      </p>
+      {{picked}}
+    </div>
+    <script>
+        // 创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                mytext:'',
+                isChecked:false,
+                checkGroup:[],
+                picked:''
+            },
+            methods: {
+               
+            }
+        });
+    </script>
+
+</body>
+
+</html>
