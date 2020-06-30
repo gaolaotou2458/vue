@@ -20,36 +20,17 @@
     -->
     </script>
     <div id="app">
-        <input type="text" @input="handleInput" v-model="mytext">
-        <ul>
-            <li v-for="data in datalist">
-                {{data}}
-            </li>
-        </ul>
+        <button @click="handleClick">click</button>
     </div>
     <script>
         // 创建 Vue 实例，得到 ViewModel
         var vm = new Vue({
             el: '#app',
             data: {
-                mytext:'',
-                datalist:["aaa","bbb","ccc","ddd","eee"],
-                olddatalist:["aaa","bbb","ccc","ddd","eee"]
+              
             },
             methods: {
-                handleInput(){
-             
-                 
-                    //利用输入框的字符,筛选出包含字段的元素
-                    //filter 过滤
-                    var newlist = this.olddatalist.filter(item => {
-                        return item.indexOf(this.mytext)>-1
-                    })
-                    this.datalist = newlist;
-                    //计算属性
-
-                    
-                }
+              
             }
         });
     </script>
