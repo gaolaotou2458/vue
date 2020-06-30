@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>模糊查询</title>
+
+</head>
+
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    -->
+    </script>
+    <div id="app">
+    
+        <button @click="handleClick($event)">click2</button>
+        <!-- 修饰符,只管自己,不管冒泡 -->
+        <ul @click.self="handleUlClick">
+            <!-- 事件修饰符,阻止事件冒泡-->
+            <li @click.stop="handleLiClick">111</li>
+            <li @click="handleLiClick()">2222</li>
+            <li @click.once="handleLiClick()">333</li>
+        </ul>
+        <!-- 事件修饰符,阻止默认跳转-->
+        <a href="http://www.baidu.com" @click.prevent="handleChangePage">changepage</a>
+    </div>
+    <script>
+        // 创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                isShow:false
+            },
+            methods: {
+                handleClick(ev){
+                    console.log(ev.target);//ev就是事件对象
+                },
+                handleLiClick(e){
+                    console.log("我是li")
+                    //原生阻止事件冒泡
+                    //e.stopPropagation();
+                    
+                },
+                handleUlClick(){
+                    console.log("我是ul")
+                },
+                handleChangePage(e){
+                    console.log("handleChangePage")
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

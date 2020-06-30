@@ -21,16 +21,21 @@
     </script>
     <div id="app">
         <button @click="handleClick">click</button>
+        <button @click="handleClick()">click2</button>
+        <button @click="isShow=!isShow">click3</button>
+        <div v-show="isShow">111111111111111</div>
     </div>
     <script>
         // 创建 Vue 实例，得到 ViewModel
         var vm = new Vue({
             el: '#app',
             data: {
-              
+                isShow:false
             },
             methods: {
-              
+                handleClick(){
+                    this.isShow = !this.isShow;
+                }
             }
         });
     </script>
