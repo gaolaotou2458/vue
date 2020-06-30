@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>内容分发</title>
+
+</head>
+
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    -->
+    </script>
+    <div id="app">
+      {{10+20}}
+      <br>
+      {{10>20?'aaa':'bbb'}}
+      <br>
+      {{myhtml}}
+      <br>
+      <div v-html="myhtml"></div>
+    </div>
+
+    <script type="text/javascript">
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          title:'标题',
+          todoItems:["张三","李四","王五"],
+          myhtml:"<b>11111<b/>"
+
+        },
+        methods:{
+         removeItem:function(index){
+          this.todoItems.splice(index,1);
+         }
+       }
+      });
+
+    </script>
+</body>
+
+</html>

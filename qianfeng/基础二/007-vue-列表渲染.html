@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>内容分发</title>
+
+</head>
+
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    -->
+    </script>
+    <div id="app">
+            <div>
+              <input type="text" v-model="name">
+              <button @click="add">添加</button>
+            </div>
+            <ul>
+              <li v-for="(item, i) in list" :key="item.id">
+                <input type="checkbox"> {{item.name}}
+              </li>
+            </ul>
+    </div>
+<script>
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+        el: '#app',
+        data: {
+        name: '',
+        newId: 3,
+        list: [
+            { id: 1, name: '李斯' },
+            { id: 2, name: '吕不韦' },
+            { id: 3, name: '嬴政' }
+        ]
+        },
+        methods: {
+        add() {
+            //注意这里是unshift
+            this.list.unshift({ id: ++this.newId, name: this.name })
+            this.name = ''
+        }
+        }
+    });
+    </script>
+          
+</body>
+
+</html>

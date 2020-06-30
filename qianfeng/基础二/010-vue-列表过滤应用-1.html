@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>模糊查询</title>
+
+</head>
+
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    -->
+    </script>
+    <div id="app">
+        <input type="text" @input="handleInput">
+        <ul>
+            <li v-for="data in datalist">
+                {{data}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        // 创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                datalist:["aaa","bbb","ccc","ddd","eee"]
+            },
+            methods: {
+                handleInput(){
+                    console.log("数值改变触发")
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
