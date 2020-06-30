@@ -23,7 +23,11 @@
       <input type="checkbox" v-model="ischecked" @change="handerChecked">全选/全不选
      <ul>
        <li v-for="(data,index) in datalist" :key="data.id">
-         <input type="checkbox" v-model="checkgroup" :value="data" @change="handleLichange">{{data}}
+         <input type="checkbox" v-model="checkgroup" :value="data" @change="handleLichange">
+         {{data}}
+         <button @click="del(data)">del</button>
+         {{data.number}}
+         <button @click="data.number++">add</button>
        </li>
      </ul>
      <p>总金额计算:{{getSum()}}</p>
@@ -44,6 +48,7 @@
         },
         methods:{
           getSum(){
+            //函数计算中的状态改变后,函数会自动执行一遍
             let totalNum = 0 ;
             this.checkgroup.forEach(element => {
               totalNum+= element.price * element.number;
@@ -64,6 +69,13 @@
             } else {
               this.ischecked = false;
             }
+          },
+        
+          del(data){
+            var number = data.number--;
+            if(number === 1) {
+              data.number = 1;
+            } 
           }
        }
       });
