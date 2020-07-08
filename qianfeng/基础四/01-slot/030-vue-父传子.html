@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>027-vue-定义组件-1</title>
+
+</head>
+
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    -->
+    </script>
+    <div id="app">
+        <navbar myname="home" :myshow="false"></navbar>
+        <navbar myname="list" :myshow="true"></navbar>
+        <navbar :myname="parentname" :myshow="true"></navbar>
+    </div>
+
+    <script type="text/javascript">
+        Vue.component("navbar",{
+            template:`
+                <div>
+                    <button>返回</button>
+                    navbar {{myname}}
+                    <button v-show="myshow">首页</button>
+                </div>
+            `,
+            //props:["myname","myshow"],  //接收父组件传递的属性
+
+            //属性验证
+            props:{
+                myname:String,
+                myshow:Boolean
+            }
+            
+        })
+        
+        new Vue({
+            el:"#app",
+            data:{
+                parentname:"父组件状态"
+            }
+        })
+
+    </script>
+</body>
+
+</html>

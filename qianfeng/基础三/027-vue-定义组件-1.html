@@ -31,7 +31,7 @@
             template: 
             `<div style="background:yellow">
                 <button @click="handleback()">返回</button>
-                 navbar
+                 navbar ----   {{navbarname}}
                 <button>主页</button>
                 <child></child>
                 <navbarchild></navbarchild>
@@ -41,10 +41,16 @@
                     alert("返回")
                 }
             },
+            data(){
+                //
+                return {
+                    navbarname:"navbarname"
+                }
+            },
             //局部定义组件
             components:{
                 navbarchild:{
-                    template:`<div>navbarchild</div>`
+                    template:`<div>navbarchild-只能在navbar中使用</div>`
                 }
 
             }
@@ -55,9 +61,9 @@
             template:`<div>child全局定义</div>`
         })
 
-        Vue.component("sidebar",{
+        Vue.component("sidebar",{ 
             template:`
-                <div>
+                <div style="background:red">
                     siderbar组件
                     <child></child>
                 </div>
