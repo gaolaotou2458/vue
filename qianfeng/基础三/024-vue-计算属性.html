@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta Header set Access-Control-Allow-Origin *>
-    <title>内容分发</title>
+    <title>计算属性</title>
 
 </head>
 
@@ -20,13 +20,14 @@
     -->
     </script>
     <div id="app">
-        <button @click="handleClick()">获取影片信息</button>
-        <ul>
-            <li v-for="data in datalist">
-                <h3>{{data.name}}</h3>
-                <img :src="data.poster" alt="">
-            </li>
-        </ul>
+        {{myname.substring(0,1).toUpperCase() + myname.substring(1) }}
+        <br>
+        <p>计算属性:{{getMyname}}</p>
+        <p>方法获取属性:{{getMyNameMethod()}}</p>
+        <br>
+        <p>第二次</p>
+        <p>计算属性:{{getMyname}}</p>
+        <p>方法获取属性:{{getMyNameMethod()}}</p>
     </div>
 
     <script type="text/javascript">
@@ -35,20 +36,24 @@
         var vm = new Vue({
             el: '#app',
             data: {
-                datalist:[]
-
+                myname:'xiaoming'
             },
             methods: {
-                handleClick(){
-
-                    axios.get("./json/test.json").then(res => {
-                        console.log(res.data.data.films) // axios 自动包装data属性 res.data
-                        this.datalist = res.data.data.films
-                    }).catch(err => {
-                        console.log(err);
-                    })
+                //方法每次调用执行
+                getMyNameMethod(){
+                    console.log("调用方法")
+                    return this.myname.substring(0,1).toUpperCase() + this.myname.substring(1)
                 }
-            }
+            },
+            //计算属性写法,关键字固定computed
+            //定义像函数,使用像属性
+            computed: {
+                //计算属性计算一次可以缓存在内存,刷新页面丢失,用空间换时间的套路
+                getMyname(){
+                    console.log("调用计算属性")
+                    return this.myname.substring(0,1).toUpperCase() + this.myname.substring(1)
+                } //依赖的状态改变了,计算属性会重新计算一遍
+            },
         });
 
     </script>

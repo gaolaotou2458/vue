@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta Header set Access-Control-Allow-Origin *>
-    <title>模糊查询</title>
+    <title>计算属性</title>
 
 </head>
 
@@ -20,31 +20,27 @@
     -->
     </script>
     <div id="app">
-        <input type="text" v-model="mytext">
-        <ul>
-            <!-- 通过计算属性来模糊匹配 -->
-            <li v-for="data in getMyDatalist">
-                {{data}}
-            </li>
-        </ul>
+      
     </div>
-    <script>
-        // 创建 Vue 实例，得到 ViewModel
+
+    <script type="text/javascript">
+
+        
         var vm = new Vue({
             el: '#app',
             data: {
-                mytext:'',
-                datalist:["aaa","bbb","ccc","ddd","eee","aadd"]
+                myname:'xiaoming'
             },
+            methods: {
+              
+            },
+          
             computed: {
-                //过滤数组
-                getMyDatalist(){
-                    return this.datalist.filter(item => item.indexOf(this.mytext)>-1);
-                }
+               属性会重新计算一遍
             },
         });
-    </script>
 
+    </script>
 </body>
 
 </html>

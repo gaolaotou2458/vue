@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>027-vue-定义组件-1</title>
+
+</head>
+
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    -->
+    </script>
+    <div id="app">
+      <navbar></navbar>
+      <sidebar></sidebar>
+    </div>
+
+    <script type="text/javascript">
+
+        // 1.全局定义组件(作用域隔离)
+        Vue.component("navbar",{
+            template: 
+            `<div style="background:yellow">
+                <button @click="handleback()">返回</button>
+                 navbar
+                <button>主页</button>
+                <child></child>
+                <navbarchild></navbarchild>
+            </div>`,
+            methods:{
+                handleback(){
+                    alert("返回")
+                }
+            },
+            //局部定义组件
+            components:{
+                navbarchild:{
+                    template:`<div>navbarchild</div>`
+                }
+
+            }
+        })
+
+        //全局定义孩子组件
+        Vue.component("child",{
+            template:`<div>child全局定义</div>`
+        })
+
+        Vue.component("sidebar",{
+            template:`
+                <div>
+                    siderbar组件
+                    <child></child>
+                </div>
+            `
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            methods: {
+              
+            },
+          
+            computed: {
+               //属性会重新计算一遍
+            },
+        });
+
+    </script>
+</body>
+
+</html>
