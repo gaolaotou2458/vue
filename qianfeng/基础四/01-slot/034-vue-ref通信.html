@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>034-vue-ref通信</title>
+
+</head>
+
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    -->
+    <!--
+       1.ref放在标签上,拿到的是原生节点
+       2.ref放在组件上,拿到的是组件对象
+
+
+    -->
+    </script>
+    <div id="app">
+       <input type="text" ref="mytext">
+       <button @click="handleAdd">add</button>
+       <child ref="mychild"></child>
+
+    </div>
+
+    <script type="text/javascript">
+        //子组件
+        Vue.component("child",{
+            template:`
+                <div>
+                    child
+                </div>
+            `,
+            data(){
+                return {
+                    childname:'子组件状态'
+                }
+            },
+            methods:{
+                add(data){
+                    console.log("孩子的add():" + data)
+                }
+            }
+        })
+
+
+        var vm = new Vue({
+            el:"#app",
+            methods: {
+                handleAdd(){
+                    console.log(this.$refs.mytext.value)
+                    console.log(this.$refs.mychild.childname)
+                    this.$refs.mychild.add("孩子听话");
+                }
+            },
+        })
+
+    </script>
+</body>
+
+</html>

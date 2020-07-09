@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>037-vue-动态组件</title>
+
+</head>
+
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+  
+    </script>
+    <div id="app">
+        <footer>
+            <li><a>首页</a></li>
+            <li><a>列表页</a></li>
+            <li><a>购物车页面</a></li>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript">
+   
+
+        var vm = new Vue({
+            el:"#app",
+            data:{
+
+            },
+            methods: {
+                
+            },
+            comments:{
+                "home":{
+                    template:`<div>home</div>`
+                },
+                "list":{
+                    template:`<div>list</div>`
+                },
+                "shopcar":{
+                    template:`<div>shopcar</div>`
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
