@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <link rel="stylesheet" href="lib/swiper/css/swiper.css">
+  <script src="lib/swiper/js/swiper.js"></script>
+  <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+  <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+  <style>
+    .swiper-container {
+      width: 600px;
+      height: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <div class="swiper-container a">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" v-for="(data,index) in datalist" :key="data">
+          {{data}}
+        </div>
+      </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
+      <!-- 如果需要导航按钮 -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    new Vue({
+      el: "#box",
+      data: {
+        datalist: []
+      },
+      mounted() {
+        setTimeout(() => {
+          this.datalist = ["1111", "2222", "3333"] //状态改完，异步更新dom
+
+        }, 2000)
+      },
+      updated() {
+        new Swiper('.a', {
+          loop: true,
+          //如果需要分页
+          pagination: {
+            el: '.swiper-pagination'
+          },
+          autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+          },
+
+
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        })
+      },
+    })
+
+
+  </script>
+</body>
+
+</html>

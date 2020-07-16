@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>037-vue-动态组件</title>
+
+</head>
+<link rel="stylesheet" type="text/css" href = "../02.css"></link>
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+  
+    </script>
+    <div id="app">
+    <transition name = "kerwinbounce" mode="out-in">
+        <keep-alive>
+            <component :is="who"></component>
+        </keep-alive>
+    </transition>
+       
+        <footer>
+            <li><a @click="who='home'">首页</a></li>
+            <li><a @click="who='list'">列表页</a></li>
+            <li><a @click="who='shopcar'">购物车页面</a></li>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript">
+   
+
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                who:'home'
+            },
+            methods: {
+                
+            },
+            components:{
+                "home":{
+                    template:`<div>home<input type="text"/></div>`
+                },
+                "list":{
+                    template:`<div>list</div>`
+                },
+                "shopcar":{
+                    template:`<div>shopcar</div>`
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

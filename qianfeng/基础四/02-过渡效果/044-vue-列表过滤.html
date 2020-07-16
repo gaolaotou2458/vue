@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title>内容分发</title>
+    <link rel="stylesheet" type="text/css" href = "../02.css"></link>
+</head>
+
+<body>
+
+  <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+  <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+
+  <div id="box">
+    <input type="text" v-model="mytext" /> {{mytext}}
+    <button @click="handleAddClick">add</button>
+
+
+    <transition-group tag="ul" name="kerwinbounce">
+      <li v-for="(data,index) in datalist" :key="data">
+        {{data}}---{{index}}
+        <button @click="handleDelClick(index)">del</button>
+      </li>
+    </transition-group>
+
+  </div>
+
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: "#box",
+      data: {
+        datalist: [],
+        mytext: "111111"
+      },
+      methods: {
+        handleAddClick() {
+          this.datalist.push(this.mytext)
+        },
+        handleDelClick(index) {
+          console.log("delete", index);
+          //splice
+          this.datalist.splice(index, 1)
+        }
+      }
+    })
+
+            // 新老虚拟dom对比的 时候 会 使用 diff 算法。
+  </script>
+</body>
+
+</html>
