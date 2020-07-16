@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta Header set Access-Control-Allow-Origin *>
+    <title></title>
+    <link rel="stylesheet" href="../../lib/swiper/css/swiper.css">
+    <script src="../../lib/swiper/js/swiper.js"></script>
+    <style>
+        .swiper-container {
+            width: 600px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="http://192.168.215.117:9000/vue/vue.js"></script>
+    <script src="http://192.168.215.117:9000/vue/axios.min.js"></script>
+
+    </script>
+    <div id="app">
+        <div id="box">
+            <div class="swiper-container a">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="(data,index) in list" v-swipe="{
+                        index:index,
+                        length:list.length}">
+                        {{data}}
+                    </div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+                <!-- 如果需要导航按钮 -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        Vue.directive("swipe",{
+            inserted(el,bind){
+                console.log(el,length);
+                if(bind.value.index === bind.value.length - 1){
+                    new Swiper('.a', {
+                        loop: true,
+                        //如果需要分页
+                        pagination: {
+                            el: '.swiper-pagination'
+                        },
+                        autoplay: {
+                            delay: 2500,
+                            disableOnInteraction: false,
+                        },
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                    })
+                }
+            }
+            
+        })
+
+        var vm = new Vue({
+            el: "#app",
+
+            data: {
+                list: []
+            },
+            mounted() {
+                setTimeout(() => {
+                    this.list = ["1111", "2222", "33333"]
+                }, 2000)
+            },
+        })
+
+    </script>
+</body>
+
+</html>
