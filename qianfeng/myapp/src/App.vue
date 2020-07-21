@@ -31,11 +31,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-  ul{
-    li{
-      background: yellow
-    }
-  }
-</style>
