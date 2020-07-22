@@ -1,28 +1,28 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Flim from '@/views/Flim.vue';
+import Film from '@/views/Film.vue';
 import Cinema from '@/views/Cinema.vue';
 import Center from '@/views/Center.vue';
 import Detail from '@/views/Detail.vue';
 import Login from '@/views/Login.vue';
-import Mowplaying from '@/views/flim/Nowplaying';
-import Comingsoon from '@/views/flim/Comingsoon';
+import Nowplaying from '@/views/film/Nowplaying';
+import Comingsoon from '@/views/film/Comingsoon';
 
 Vue.use(Router);
-const auth = {
-  isLogin () {
-    return false;
-  }
-};
+// const auth = {
+//   isLogin () {
+//     return true;
+//   }
+// };
 
 const routes = [
   {
-    path: '/flim',
-    component: Flim,
+    path: '/film',
+    component: Film,
     children: [
       {
-        path: '/flim/nowplaying',
-        component: Mowplaying
+        path: 'nowplaying',
+        component: Nowplaying
       },
       {
         path: 'comingsoon',
@@ -30,7 +30,7 @@ const routes = [
       },
       {
         path: '',
-        redirect: '/flim/nowplaying'
+        redirect: 'nowplaying'
       }
     ]
   },
@@ -50,11 +50,12 @@ const routes = [
     // 动态路由
     path: '/detail/:myid',
     name: 'kerwindetail',
-    component: Detail
+    component: Detail,
+    props: true
   },
   {
     path: '*',
-    redirect: '/flim'
+    redirect: '/film'
   }
 ];
 
@@ -66,17 +67,18 @@ const router = new Router({
 });
 
 // 全局守卫
-router.beforeEach((to, from, next) => {
-  // ...
-  // console.log(to);
-  if (to.path === '/center') {
-    if (auth.isLogin()) {
-      next();
-    } else {
-      next('/login');
-    }
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   // ...
+//   console.log(to);
+//   if (to.path === '/center') {
+//     if (auth.isLogin()) {
+//       next();
+//     } else {
+//       next('/login');
+//     }
+//   } else {
+//     next();
+//   }
+//   next();
+// });
 export default router;
