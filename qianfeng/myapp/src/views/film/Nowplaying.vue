@@ -1,16 +1,29 @@
 <template>
     <div>
-        nowplaying
         <ul>
             <li v-for="data in datalist" :key="data.filmId" @click="handleChangePage(data)">
                 <img :src= "data.poster">
-                {{data.name}}
+                <h3>{{data.name}}</h3>
+                <p>观众评分{{data.grade}}</p>
+                <p>主演{{data.actors | actorfilter}}</p>
             </li>
         </ul>
     </div>
 </template>
 <script>
 import axios from 'axios';
+import Vue from 'vue';
+Vue.filter('actorfilter', function (data) {
+  if (data) {
+    console.log('=============');
+    console.log(data);
+    var newlist = data.map(item => item.name);
+    return newlist.join(' ');
+  } else {
+    return '暂无主演';
+  }
+});
+
 export default {
   data () {
     return {
@@ -46,3 +59,16 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+  ul{
+    li{
+      padding: 20px 20px 20px 20px;
+      overflow: hidden;
+      img{
+        float: left;
+        width:30%;
+        padding-right: 20px;
+      }
+    }
+  }
+</style>
