@@ -1,37 +1,30 @@
 <template>
 <div>
-    <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 3</div>
-      <div class="swiper-slide">Slide 4</div>
-      <div class="swiper-slide">Slide 5</div>
-      <div class="swiper-slide">Slide 6</div>
-      <div class="swiper-slide">Slide 7</div>
-      <div class="swiper-slide">Slide 8</div>
-      <div class="swiper-slide">Slide 9</div>
-      <div class="swiper-slide">Slide 10</div>
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-    <!-- Add Arrows -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
+  <ul>
+    <li v-for="data in datalist" :key="data.cinemaId">
+      
+    </li>
+  </ul>
 </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from 'axios'
 export default {
+  data(){
+    return{
+      datalist:[]
+    }
+  },
   mounted () {
     axios({
-      url: 'https://m.maizuo.com/gateway?cityId=310100&ticketFlag=1&k=9595825',
+      url:"https://m.maizuo.com/gateway?cityId=310100&ticketFlag=1&k=9595825",
       headers: {
         'X-Client-Info': '{ "a": "3000", "ch": "1002", "v": "5.0.4", "e": "159538154712713103196161", "bc": "310100"}',
         'X-Host': 'mall.film-ticket.film.list'
       }
-    });
+    }).then(res => {
+      console.log(res.data);
+    })
   }
 };
 </script>
