@@ -22,25 +22,14 @@
 </div>
 </template>
 <script>
-import Swiper from 'swiper'; // js
-import 'swiper/dist/css/swiper.min.css';
+import axios from 'axios';
 export default {
   mounted () {
-    /* eslint-disable no-new */
-    new Swiper('.swiper-container', {
-      spaceBetween: 30,
-      centeredSlides: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+    axios({
+      url: 'https://m.maizuo.com/gateway?cityId=310100&ticketFlag=1&k=9595825',
+      headers: {
+        'X-Client-Info': '{ "a": "3000", "ch": "1002", "v": "5.0.4", "e": "159538154712713103196161", "bc": "310100"}',
+        'X-Host': 'mall.film-ticket.film.list'
       }
     });
   }

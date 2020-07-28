@@ -31,13 +31,20 @@ export default {
 };
 </script>
 <style lang="scss">
-
-* {
-  margin: 0;
-  padding: 0;
+*{
+  margin:0;
+  padding:0;
 }
 
-html {
+html{
   height: 100%;
+
+}
+li{
+  list-style: none;
+}
+
+section{
+  margin-bottom: 50px;
 }
 </style>

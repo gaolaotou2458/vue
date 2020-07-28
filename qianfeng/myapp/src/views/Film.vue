@@ -1,19 +1,20 @@
 <template>
     <div>
-        <swiper :key="looplist.length">
+        <swiper :key="looplist.length" ref="myswiper">
             <div class="swiper-slide" v-for="data in looplist" :key="data.filmId">
                 <img :src= "data.poster">
             </div>
         </swiper>
+        <filmheader :class="isFixed?'fixed':''"></filmheader>
         <router-view></router-view>
     </div>
 </template>
 <script>
 import swiper from '@/views/film/Swiper';
-import 'swiper/dist/css/swiper.min.css';
+import filmheader from '@/views/film/FilmHeader';
 import axios from 'axios';
-import Vue from 'vue';
-Vue.use(swiper);
+// import Vue from 'vue';
+// Vue.use(swiper);
 export default {
   data () {
     return {
@@ -22,7 +23,8 @@ export default {
     };
   },
   components: {
-    swiper
+    swiper,
+    filmheader
   },
   mounted () {
     axios({
@@ -35,9 +37,28 @@ export default {
       this.looplist = res.data.data.films;
       // Indicator.close()
     });
+
+    window.onscroll = this.handleScroll;
+  },
+  destroyed () {
+    window.onscroll = null;
+  },
+  methods: {
+    handleScroll () {
+      // console.log(document.documentElement.scrollTop, this.$refs.myswiper.$el.offsetHeight);
+      var scrollTop = document.documentElement.scrollTop;
+      var offsetHeight = this.$refs.myswiper.$el.offsetHeight;
+      if (scrollTop >= offsetHeight) {
+        this.isFixed = true;
+      } else {
+        this.isFixed = false;
+      }
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
-
+  img{
+    height:300px;
+  }
 </style>

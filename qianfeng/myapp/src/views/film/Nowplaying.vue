@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <li v-for="data in datalist" :key="data.filmId" @click="handleChangePage(data)">
+            <li v-for="data in datalist" :key="data.filmId" @click="handleChangePage(data.filmId)">
                 <img :src= "data.poster">
                 <h3>{{data.name}}</h3>
                 <p>观众评分{{data.grade}}</p>
@@ -15,8 +15,8 @@ import axios from 'axios';
 import Vue from 'vue';
 Vue.filter('actorfilter', function (data) {
   if (data) {
-    console.log('=============');
-    console.log(data);
+    // console.log('=============');
+    // console.log(data);
     var newlist = data.map(item => item.name);
     return newlist.join(' ');
   } else {
@@ -43,13 +43,13 @@ export default {
         'X-Host': 'mall.film-ticket.film.list'
       }
     }).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       this.datalist = res.data.data.films;
     });
   },
   methods: {
     handleChangePage (id) {
-      console.log(id);
+      // console.log(id);
       // 编程式导航  这个router式main.js 里面new Vue对象带过来的
       // 通过路径跳转
       // this.$router.push(`/detail/${id}`);
@@ -61,6 +61,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   ul{
+    bottom: 20px;
     li{
       padding: 20px 20px 20px 20px;
       overflow: hidden;
@@ -68,6 +69,7 @@ export default {
         float: left;
         width:30%;
         padding-right: 20px;
+        height: 30%;
       }
     }
   }
